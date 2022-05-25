@@ -1,6 +1,7 @@
 import collections
 import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pandas import read_excel
 
@@ -15,13 +16,13 @@ def all_alcohol():
     return products
 
 
-def ending_word(last_digit):
-    if last_digit == 0 or 5 <= last_digit <= 9:
+def substitutes_words(last_digit_year):
+    if last_digit_year == 0 or 5 <= last_digit_year <= 9:
         renderer_page = template.render(year=how_many_years,
                                         inscription='лет',
                                         wines=alcohols)
         return renderer_page
-    elif last_digit == 1:
+    elif last_digit_year == 1:
         renderer_page = template.render(year=how_many_years,
                                         inscription='год',
                                         wines=alcohols)
