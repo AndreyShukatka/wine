@@ -4,7 +4,7 @@ import datetime
 from pandas import read_excel
 import collections
 
-wines = read_excel('wine2.xlsx', na_values=['N/A', 'NA'],
+wines = read_excel('wine.xlsx', na_values=['N/A', 'NA'],
                    keep_default_na=False).to_dict(orient='records')
 env = Environment(loader=FileSystemLoader('.'),
                   autoescape=select_autoescape(['html', 'xml'])
