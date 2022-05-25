@@ -1,7 +1,6 @@
 import collections
 import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pandas import read_excel
 
@@ -16,22 +15,14 @@ def all_alcohol():
     return products
 
 
-def substitutes_words(last_digit_year):
-    if last_digit_year == 0 or 5 <= last_digit_year <= 9:
-        renderer_page = template.render(year=how_many_years,
-                                        inscription='лет',
-                                        wines=alcohols)
-        return renderer_page
-    elif last_digit_year == 1:
-        renderer_page = template.render(year=how_many_years,
-                                        inscription='год',
-                                        wines=alcohols)
-        return renderer_page
+def year_view():
+    year_last_digit = str(how_many_years)[-1]
+    if year_last_digit in ['2', '3', '4']:
+        return f'{how_many_years} года'
+    elif year_last_digit == '1':
+        return f'{how_many_years} год'
     else:
-        renderer_page = template.render(year=how_many_years,
-                                        inscription='года',
-                                        wines=alcohols)
-        return renderer_page
+        return f'{how_many_years} лет'
 
 
 if __name__ == '__main__':
@@ -43,10 +34,12 @@ if __name__ == '__main__':
     template = env.get_template('template.html')
     how_many_years = Current_date - foundation_date
     last_digit_year = how_many_years % 10
-    alcohols = all_alcohol()
+    rendered_page = template.render(alcohols=all_alcohol(),
+                                    company_age=year_view())
+
 
     with open('index.html', 'w', encoding='utf8') as file:
-        file.write(ending_word(last_digit_year))
+        file.write(rendered_page)
 
     server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
     server.serve_forever()
