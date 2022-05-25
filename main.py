@@ -13,12 +13,6 @@ env = Environment(loader=FileSystemLoader('.'),
 
 def all_alcohol():
     products = collections.defaultdict(list)
-    types_wine = list()
-    categories = dict()
-    for category in wines:
-        categories.setdefault(category['Категория'])
-    for types in categories:
-        types_wine.append(types)
     for wine_products in wines:
         products[wine_products['Категория']].append(wine_products)
     return products
