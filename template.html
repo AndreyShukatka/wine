@@ -93,38 +93,36 @@
             </p>
           </div>
         </div>
-          {% for category in alcohols.keys() %}
+          {% for category in alcohols %}
             <div class="col-12 section-title text-center mb-5">
             <h2 class="d-block">{{category}}</h2>
         <div class="row">
-            {% for win in alcohols.values() %}
-              {% for wine in win %}
-                {% if wine['Категория'] == category %}
+            {% for wine in alcohols.get(category) %}
           <div class="col-lg-4 mb-5 col-md-6">
             <div class="wine_v_1 text-center pb-4 pt-5">
-              <img src="images/{{wine.Картинка}}" alt="Image" class="img-fluid">
-              {% if wine.Акция == 'Выгодное предложение' %}
-              <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+              {% if wine.Акция %}
+                <img src="images/{{wine.Картинка}}" alt="Image" class="img-fluid">
+                <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+              {% else %}
+                <img src="images/{{wine.Картинка}}" alt="Image" class="img-fluid">
               {% endif %}
-              <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{wine.Название}}</h3>
-                <p>
-                  {% if category != 'Напитки' %}
-                  Сорт винограда - {{wine.Сорт}}<br/>
-                  {% endif %}
-                  <span class="price">{{wine.Цена}} р.</span>
-                </p>
+                  <div>
+                    <h3 class="heading mt-3 mb-3 text-dark">{{wine.Название}}</h3>
+                    <p>
+                      {% if wine.Сорт %}
+                      Сорт винограда - {{wine.Сорт}}<br/>
+                      {% endif %}
+                      <span class="price">{{wine.Цена}} р.</span>
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-              {% endif %}
             {% endfor %}
           {% endfor %}
         </div>
-        </div>
-          {% endfor %}
-        </div>
       </div>
+    </div>
+    </div>
     </div>
     <div class="hero-2" style="background-image: url('assets/hero_2.jpg');">
     <div><a id="feedback"></a></div>
