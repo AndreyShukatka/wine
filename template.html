@@ -93,12 +93,12 @@
             </p>
           </div>
         </div>
-          {% for category in wines.keys() %}
+          {% for category in alcohols.keys() %}
             <div class="col-12 section-title text-center mb-5">
             <h2 class="d-block">{{category}}</h2>
         <div class="row">
-            {% for win in wines.values() %}
-              {% for wine in win%}
+            {% for win in alcohols.values() %}
+              {% for wine in win %}
                 {% if wine['Категория'] == category %}
           <div class="col-lg-4 mb-5 col-md-6">
             <div class="wine_v_1 text-center pb-4 pt-5">
@@ -132,7 +132,7 @@
         <div class="row justify-content-center text-center align-items-center">
           <div class="col-md-8">
             <h2 style="font-size: 3rem;">проверено временем</h2>
-            <span class="sub-title" style="font-size: 2.5rem;">Уже {{year}} {{inscription}} с вами</span>
+            <span class="sub-title" style="font-size: 2.5rem;">Уже {{company_age}} с вами</span>
           </div>
         </div>
       </div>
