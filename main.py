@@ -13,6 +13,8 @@ def all_alcohol():
 
 
 def year_view():
+    foundation_date = 1920
+    how_many_years = current_date - foundation_date
     year_last_digit = str(how_many_years)[-1]
     if year_last_digit in ['2', '3', '4']:
         return f'{how_many_years} года'
@@ -30,9 +32,6 @@ if __name__ == '__main__':
                       )
     template = env.get_template('template.html')
     current_date = datetime.datetime.now().year
-    foundation_date = 1920
-    how_many_years = current_date - foundation_date
-    last_digit_year = how_many_years % 10
     rendered_page = template.render(alcohols=all_alcohol(),
                                     company_age=year_view())
 
