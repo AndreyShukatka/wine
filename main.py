@@ -36,7 +36,7 @@ if __name__ == '__main__':
     )
     template = env.get_template('template.html')
     rendered_page = template.render(
-        alcohols=filter_category(wines),
+        wine_from_file=filter_category(wines),
         company_age=view_year()
     )
 
