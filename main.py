@@ -15,14 +15,14 @@ def all_alcohol():
 def year_view():
     foundation_date = 1920
     current_date = datetime.datetime.now().year
-    how_many_years = current_date - foundation_date
-    year_last_digit = str(how_many_years)[-1]
+    factory_age = current_date - foundation_date
+    year_last_digit = str(factory_age)[-1]
     if year_last_digit in ['2', '3', '4']:
-        return f'{how_many_years} года'
+        return f'{factory_age} года'
     elif year_last_digit == '1':
-        return f'{how_many_years} год'
+        return f'{factory_age} год'
     else:
-        return f'{how_many_years} лет'
+        return f'{factory_age} лет'
 
 
 if __name__ == '__main__':
