@@ -12,7 +12,7 @@ def all_alcohol():
     return products
 
 
-def year_view():
+def view_year():
     foundation_date = 1920
     current_date = datetime.datetime.now().year
     factory_age = current_date - foundation_date
@@ -28,12 +28,15 @@ def year_view():
 if __name__ == '__main__':
     wines = read_excel('wine.xlsx', na_values=['N/A', 'NA'],
                        keep_default_na=False).to_dict(orient='records')
-    env = Environment(loader=FileSystemLoader('.'),
-                      autoescape=select_autoescape(['html', 'xml'])
-                      )
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
     template = env.get_template('template.html')
-    rendered_page = template.render(alcohols=all_alcohol(),
-                                    company_age=year_view())
+    rendered_page = template.render(
+        alcohols=all_alcohol(),
+        company_age=view_year()
+    )
 
 
     with open('index.html', 'w', encoding='utf8') as file:
