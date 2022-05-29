@@ -26,7 +26,8 @@ def view_year():
 
 
 if __name__ == '__main__':
-    wines = read_excel('wine.xlsx', na_values=['N/A', 'NA'],
+    path_file = input('Введите путь к настройкам:')
+    wines = read_excel(path_file, na_values=['N/A', 'NA'],
                        keep_default_na=False).to_dict(orient='records')
     env = Environment(
         loader=FileSystemLoader('.'),
