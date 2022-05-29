@@ -8,8 +8,8 @@ from pandas import read_excel
 
 def filter_category(wines):
     products = collections.defaultdict(list)
-    for wine_products in wines:
-        products[wine_products['Категория']].append(wine_products)
+    for wine in wines:
+        products[wine_products['Категория']].append(wine)
     return products
 
 
