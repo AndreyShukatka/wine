@@ -6,7 +6,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pandas import read_excel
 
 
-def filter_category(wines):
+def get_wines(wines):
     products = collections.defaultdict(list)
     for wine in wines:
         products[wine_products['Категория']].append(wine)
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     )
     template = env.get_template('template.html')
     rendered_page = template.render(
-        wine_map=filter_category(wines),
+        wine_map=get_wines(wines),
         company_age=calc_age_string()
     )
 
