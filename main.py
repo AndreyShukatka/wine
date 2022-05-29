@@ -4,9 +4,6 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pandas import read_excel
 
-Current_date = datetime.datetime.now().year
-foundation_date = 1920
-
 
 def all_alcohol():
     products = collections.defaultdict(list)
@@ -32,7 +29,9 @@ if __name__ == '__main__':
                       autoescape=select_autoescape(['html', 'xml'])
                       )
     template = env.get_template('template.html')
-    how_many_years = Current_date - foundation_date
+    current_date = datetime.datetime.now().year
+    foundation_date = 1920
+    how_many_years = current_date - foundation_date
     last_digit_year = how_many_years % 10
     rendered_page = template.render(alcohols=all_alcohol(),
                                     company_age=year_view())
