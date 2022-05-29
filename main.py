@@ -13,7 +13,7 @@ def filter_category(wines):
     return products
 
 
-def view_year():
+def calc_age_string():
     foundation_date = 1920
     current_date = datetime.datetime.now().year
     factory_age = current_date - foundation_date
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     template = env.get_template('template.html')
     rendered_page = template.render(
         wine_from_file=filter_category(wines),
-        company_age=view_year()
+        company_age=calc_age_string()
     )
 
 
