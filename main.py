@@ -26,9 +26,20 @@ def calc_age_string():
         return f'{factory_age} лет'
 
 
+def enter_path():
+    parser = argparse.ArgumentParser(
+        description='Программа формирует страницу сайта-магазина по продаже крымских вин '
+                    'на основе шаблона template.html и таблицы со списком вин в формате .xlsx'
+    )
+    parser.add_argument(
+        '-wp ', '--wine_path', help='Путь к файлу cо списком продукции', default='wine.xlsx'
+    )
+    wine_path = parser.parse_args().wine_path
+    return wine_path
+
+
 if __name__ == '__main__':
-    path_file = input('Введите путь к настройкам:')
-    wines = read_excel(path_file, na_values=['N/A', 'NA'],
+    wines = read_excel(enter_path(), na_values=['N/A', 'NA'],
                        keep_default_na=False).to_dict(orient='records')
     env = Environment(
         loader=FileSystemLoader('.'),
